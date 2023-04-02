@@ -1,0 +1,17 @@
+.login-form__input {
+  border: none;
+  background-color: transparent;
+  color: #FFFFFF;
+  font-family: inherit;
+  border-bottom: 2px solid #CCCCCC;
+  padding-bottom: 9px;
+  padding-top: 9px;
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.login-form__input::placeholder {
+  color: #CCCCCC;
+}

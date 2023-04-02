@@ -1,0 +1,29 @@
+.login-form__submit {
+  padding: 0;
+  border: 0;
+  background-color: #FFFFFF;
+  max-width: 358px;
+  min-height: 50px;
+  color: #000000;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 195px;
+  border-radius: 2px;
+  transition: opacity .08s ease-out;
+}
+
+.login-form__submit:hover {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+
+@media screen and (max-width: 560px) {
+  .login-form__submit {
+    min-height: 46px;
+    font-size: 16px;
+    line-height: 19px;
+    margin-top: 153px;
+  }
+}

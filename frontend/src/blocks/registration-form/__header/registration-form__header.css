@@ -1,0 +1,13 @@
+.registration-form__header {
+  margin: 0px auto 43px;
+  text-align: center;
+  font-weight: 900;
+}
+
+@media screen and (max-width: 560px) {
+  .registration-form__header {
+    margin-bottom: 31px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}

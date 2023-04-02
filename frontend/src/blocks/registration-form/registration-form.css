@@ -1,0 +1,15 @@
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  width: 358px;
+  background-color: #000000;
+  color: #FFFFFF;
+  padding: 60px 0 15px;
+}
+
+@media screen and (max-width: 560px) {
+  .registration-form {
+    width: 260px;
+    padding: 40px 0 20px;
+  }
+}

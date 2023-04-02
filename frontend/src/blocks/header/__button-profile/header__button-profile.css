@@ -1,0 +1,10 @@
+.header__button-profile {
+  background-color: transparent;
+  color: #A9A9A9;
+  font-size: 18px;
+  padding: 0;
+  border: 0;
+  height: 22px;
+  cursor: pointer;
+  text-decoration: none;
+}

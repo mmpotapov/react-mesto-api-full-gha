@@ -1,0 +1,27 @@
+.header__account {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+@media screen and (max-width: 935px) {
+  .header__account {
+    margin-right: 27px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .header__account .header__email {
+    display: none;
+  }
+  .header__account {
+    margin-right: 31px;
+  }
+  .header__account .header__button-profile {
+    display: none;
+  }
+  .header__account .header__button-profile_unauthorized {
+    display: block;
+  }
+}
+

@@ -1,0 +1,8 @@
+.unauthorized__login {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.unauthorized__login:hover {
+  color: rgba(255, 255, 255, 0.6);
+}

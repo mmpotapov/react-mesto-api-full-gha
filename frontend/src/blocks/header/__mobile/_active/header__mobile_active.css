@@ -1,0 +1,9 @@
+.header__mobile_active {
+  display: flex;
+}
+
+@media screen and (min-width: 560px) {
+  .header__mobile {
+    display: none;
+  }
+}
