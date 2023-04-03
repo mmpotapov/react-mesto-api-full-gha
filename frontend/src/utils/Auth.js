@@ -51,7 +51,7 @@ export class Auth {
 }
 
 export const authApi = new Auth({
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://api.mmp.nomoredomains.monster',
   // baseUrl: 'https://auth.nomoreparties.co',
   headers: {
     "Content-Type": "application/json",
