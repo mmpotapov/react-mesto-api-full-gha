@@ -11,7 +11,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.74.246
+IP 51.250.74.246
 
 Frontend https://mmp.nomoredomains.monster/
 

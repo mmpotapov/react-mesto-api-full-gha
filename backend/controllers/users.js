@@ -5,9 +5,10 @@ const User = require('../models/user');
 const {
   CREATED,
 } = require('../utils/httpStatus');
-const {
-  SECRET_KEY,
-} = require('../utils/constants');
+// const {
+//   SECRET_KEY,
+// } = require('../utils/constants');
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const BadRequestError = require('../errors/badRequestError');
 const NotFoundError = require('../errors/notFoundError');
@@ -112,7 +113,7 @@ module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   User.findUserByCredentials(email, password)
     .then((user) => {
-      const jwt = jsonwebtoken.sign({ _id: user._id }, SECRET_KEY, { expiresIn: '7d' });
+      const jwt = jsonwebtoken.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
       res.send({ token: jwt });
     })
     .catch((err) => {
