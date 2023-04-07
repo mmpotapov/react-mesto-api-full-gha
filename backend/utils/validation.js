@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-const regexURL = /^https?:\/\/(www\.)?[\w\.\-]+\.[a-z\.]{1,6}([\w\.\-\/]*)$/;
+const regexURL = /^https?:\/\/(www\.)?/;
 
 module.exports = {
   regexURL,
