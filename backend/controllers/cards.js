@@ -20,7 +20,16 @@ module.exports.getAllCards = (req, res, next) => {
 module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
   Card.create({ name, link, owner: req.user._id })
-    .then((card) => res.status(CREATED).send(card))
+    .then((createdCard) => {
+      Card.findOne({ _id: createdCard._id })
+        .populate('owner')
+        .then((foundCard) => {
+          res.status(CREATED).send(foundCard);
+        })
+        .catch(() => {
+          throw new NotFoundError('Карточка не найдена');
+        });
+    })
     .catch((err) => {
       if (err.name === 'ValidationError') {
         return next(new BadRequestError('Некорректный формат данных новой карточки'));
