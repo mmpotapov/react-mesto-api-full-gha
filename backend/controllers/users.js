@@ -5,9 +5,7 @@ const User = require('../models/user');
 const {
   CREATED,
 } = require('../utils/httpStatus');
-// const {
-//   SECRET_KEY,
-// } = require('../utils/constants');
+
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 const BadRequestError = require('../errors/badRequestError');
@@ -18,6 +16,18 @@ const ConflictError = require('../errors/conflictError');
 module.exports.getAllUsers = (req, res, next) => {
   User.find({})
     .then((users) => res.send(users))
+    .catch(next);
+};
+
+/** /users/me GET — получить инфо о текущем пользователе */
+module.exports.getCurrentUser = (req, res, next) => {
+  User.findById(req.user._id)
+    .then((user) => {
+      if (!user) {
+        throw new NotFoundError('Пользователь не найден');
+      }
+      res.send(user);
+    })
     .catch(next);
 };
 
@@ -36,32 +46,6 @@ module.exports.getUser = (req, res, next) => {
       }
       return next(err);
     });
-};
-
-/** /signup POST — добавить нового пользователя */
-module.exports.createUser = (req, res, next) => {
-  const {
-    name, about, avatar, email, password,
-  } = req.body;
-  bcrypt.hash(password, 10)
-    .then((hash) => {
-      User.create({
-        name, about, avatar, email, password: hash,
-      })
-        .then(() => res.status(CREATED).send({
-          name, about, avatar, email,
-        }))
-        .catch((err) => {
-          if (err.name === 'ValidationError') {
-            return next(new BadRequestError('Некорректный формат данных нового пользователя'));
-          }
-          if (err.code === 11000) {
-            return next(new ConflictError('Пользователь уже зарегистрирован на сайте'));
-          }
-          return next(err);
-        });
-    })
-    .catch(next);
 };
 
 /** /users/me PATCH — обновить информацию о пользователе  */
@@ -108,6 +92,32 @@ module.exports.updateUserAvatar = (req, res, next) => {
     });
 };
 
+/** /signup POST — добавить нового пользователя */
+module.exports.createUser = (req, res, next) => {
+  const {
+    name, about, avatar, email, password,
+  } = req.body;
+  bcrypt.hash(password, 10)
+    .then((hash) => {
+      User.create({
+        name, about, avatar, email, password: hash,
+      })
+        .then(() => res.status(CREATED).send({
+          name, about, avatar, email,
+        }))
+        .catch((err) => {
+          if (err.name === 'ValidationError') {
+            return next(new BadRequestError('Некорректный формат данных нового пользователя'));
+          }
+          if (err.code === 11000) {
+            return next(new ConflictError('Пользователь уже зарегистрирован на сайте'));
+          }
+          return next(err);
+        });
+    })
+    .catch(next);
+};
+
 /** /signin POST — авторизация */
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
@@ -122,16 +132,4 @@ module.exports.login = (req, res, next) => {
       }
       return next(err);
     });
-};
-
-/** /users/me GET — получить инфо о текущем пользователе */
-module.exports.getCurrentUser = (req, res, next) => {
-  User.findById(req.user._id)
-    .then((user) => {
-      if (!user) {
-        throw new NotFoundError('Пользователь не найден');
-      }
-      res.send(user);
-    })
-    .catch(next);
 };

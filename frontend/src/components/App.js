@@ -108,18 +108,6 @@ function App() {
       }
     }
   }, [isAuthorizedUser]);
-  // useEffect(() => {
-  //   if (isAuthorizedUser) {
-  //     Promise.all([api.getProfile(), api.getInitialCards()])
-  //       .then(([profileInfo, cardList]) => {
-  //         setCurrentUser(profileInfo);
-  //         setCards(cardList);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }, [isAuthorizedUser])
 
   /** Функция-реакция на submit формы регистрации */
   function handleRegister(inputs) {

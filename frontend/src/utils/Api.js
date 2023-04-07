@@ -93,7 +93,6 @@ export const api = new Api({
   // baseUrl: 'http://localhost:3000',
   // baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-55',
   headers: {
-    // authorization: 'a4c51acb-46f0-4f52-b5e2-f7cb5110adaa',
     'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json'
   }
